@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>室内环境数据管理系统</title>
+    <style>
+         body{ text-align:center}
+    </style>
+</head>
+<body>
+<div style="position:absolute;top:150px;left:300px;bottom:150px;right:300px;overflow:auto">
+    <h3>用户列表</h3>
+    <div>
+        {% for row in user_list %}
+        <p><a href="/userdetail-{{ row.id }}/">{{ row.username }}</a> |
+            <a href="/userdel-{{ row.id }}/">删除</a> |
+            <a href="/useredit-{{ row.id }}/">编辑</a></p>
+        {% endfor %}
+    <a href="/index.html/">返回</a>
+    </div>
+</div>
+</body>
+</html>

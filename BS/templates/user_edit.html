@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>室内环境数据管理系统</title>
+    <style>
+        body{margin:0;text-align:center;}.menu{display:block;padding:5px;}
+    </style>
+</head>
+<body>
+<div style="position:absolute;top:150px;left:300px;bottom:150px;right:300px;overflow:auto">
+    <h1>编辑用户</h1>
+        <form method="POST" action="/useredit-{{ obj.id }}/">
+        <input type="text" name="username" value="{{ obj.username }}"/>
+        <input type="text" name="password" value="{{ obj.password }}"/>
+        <input type="submit" name="提交"/>
+            <form method="POST" action="/user_info/">
+                 <input type="submit" name="提交" value="取消"/>
+            </form>
+        </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>室内环境数据管理系统</title>
+    <style>
+        body{margin:0;text-align:center;}
+    </style>
+</head>
+<body>
+<div style="position:absolute;width: 70%; float:left;top:150px;left:300px;bottom:150px;right:300px;overflow:auto">
+    <h1>用户详细信息</h1>
+    <table border="1" align="center" valign='middle'>
+    <thead>
+    <tr><th>用户编号</th><th>用户名</th><th>用户密码</th></tr>
+    </thead>
+    <tbody>
+    <tr><td>{{ obj.id }}</td><td>{{ obj.username }}</td><td>{{ obj.password }}</td></tr>
+    </tbody>
+</table>
+ </div>
+<div style="width: 10%; float:right;">
+<form action="/user_info/" method="POST" enctype="multipart/form-data">
+                 <input type="submit" value="  返   回  ">
+            </form>
+</div>
+</body>
+</html>

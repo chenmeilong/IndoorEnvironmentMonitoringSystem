@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>室内环境数据管理系统</title>
+    <style>
+        body{ text-align:center}
+    	.solid{border-style:solid;border-width:1px;}
+    </style>
+</head>
+<body>
+<div class="solid" style="width:400px; height:200px;background-color:#DCDCDC;
+position:absolute;top:150px;left:350px;bottom:150px;right:350px; margin:0 auto; text-align:center; padding-top:20px;">
+    <form action="/login/" method="POST" enctype="multipart/form-data">
+        <span style="color: red">{{ error_msg }}</span>
+        <p>账号<input type="text" name="user" placeholder="用户名"></p>
+        <p>密码<input type="password" name="pwd" placeholder="密码"></p>
+        <div style="width: 90%;float: left"><input type="submit" value="登录"/></div>
+    </form>
+   <div style="width: 10%;float: right"><a href="/add_user/">注册</a></div>
+</div>
+</body>
+</html>
+

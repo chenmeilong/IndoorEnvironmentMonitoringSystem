@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>室内环境数据管理系统</title>
+       <script src="/static/echarts.min.js"></script>
+    <script src="/static/jquery-3.1.1.js"></script>
+</head>
+<body>
+  <div id="main" style="width: 70%; float:left;height:600px;"></div>
+   <div id = 'user'style="width: 10%;float: right;top: 45px">
+        <form action="/user_info/" method="POST" enctype="multipart/form-data">
+            <input type="submit" value="用户管理">
+            </form>
+       <form action="/login/" method="POST" enctype="multipart/form-data">
+                 <input type="submit" value="  返   回  ">
+            </form>
+   </div>
+  <h3>环境质量等级说明：</h3>
+   <h4>     优：100</h4>
+   <h4>     良：75</h4>
+   <h4>     中：50</h4>
+   <h4>     差：25</h4>
+     <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var server_info;
+
+        var myChart = echarts.init(document.getElementById('main'));
+        myChart.showLoading();
+        $(function() {
+           setInterval( function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '/show.html',
+                    dataType: 'json',
+                    async : true,
+                    traditional: true,
+                    success: function (datas) {
+                         myChart.hideLoading();
+                        server_info = JSON.parse(datas);
+                         var arr_tem = server_info['tem'].split(',');
+                        var arr_hum = server_info['hum'].split(',');
+                        var arr_mq = server_info['mq'].split(',');
+                        var arr_qual = server_info['qual'].split(',');
+                        var str_tim = server_info['tim'].split(',');
+                        var option = {
+                                      title: {
+                                          text: '室内环境质量折线图'
+                                      },
+                                      tooltip: {trigger: 'axis'},
+                                      legend: {
+                                          data: ['温度','湿度','空气污染值','环境质量等级']
+                                      },
+                                      xAxis: {
+                                        type: 'category',
+                                          data:str_tim.map(function (str) {return str.replace(' ', '\n')})
+
+                                      },
+                                      yAxis: {
+                                          type: 'value'
+                                      },
+                                        series: [{
+                                          name: '温度',
+                                          type: 'line',
+                                          data: arr_tem,
+                                          //data: [1,2,3,4,5],
+                                      },
+                                        {
+                                          name: '湿度',
+                                          type: 'line',
+                                          data: arr_hum,
+                                      },
+                                      {
+                                          name: '空气污染值',
+                                          type: 'line',
+                                          data: arr_mq,
+                                      },
+                                        {
+                                          name: '环境质量等级',
+                                          type: 'line',
+                                          data: arr_qual,
+                                      }]
+                                    };
+                        myChart.setOption(option, true);
+                    }
+                });
+                }, 5000);
+})
+    </script>
+
+
+
+</body>
+</html>
